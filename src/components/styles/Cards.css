@@ -1,0 +1,42 @@
+.cards-container {
+  display: inline-block;
+  border: thin solid rgb(218, 218, 218);
+  border-radius: 5px;
+  width: 200px;
+  height: 200px;
+  margin: 30px 10px 0 20px;
+  padding: 20px;
+  box-shadow: 0 8px 6px -6px rgb(175, 175, 175);
+}
+
+.cards-body {
+  display: grid;
+  grid-template-rows: 25px 130px 65px;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 12px;
+}
+
+.cards-row {
+  min-width: 1380px;
+}
+
+.test {
+  display: inline-block;
+}
+
+.cards-img {
+  width: 120px;
+  max-height: 120px;
+}
+
+.cards-img > img {
+  width: 120px;
+  max-height: 120px;
+  margin-left: 40px;
+}
+
+.cards-header {
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+}

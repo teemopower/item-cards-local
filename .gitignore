@@ -1,0 +1,26 @@
+\.git
+\.hg
+
+\.DS_Store
+\.project
+\.vagrant
+bower_components
+node_modules
+npm-debug\.log*
+yarn.lock
+
+# Config overrides
+config/local-*
+
+# Build
+dist
+lib
+static
+coverage
+Procfile
+
+# Created by https://www.gitignore.io/api/visualstudiocode
+
+### VisualStudioCode ###
+.vscode/*
+.idea
