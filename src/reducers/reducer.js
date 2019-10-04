@@ -36,7 +36,7 @@ export const itemsReducer = (state = itemsState, action) => {
       });
     case "DELETE_ITEM":
       return Object.assign({}, state, {
-        items: [...state.items]
+        items: state.items.filter(item => item._id !== action.payload)
       })
     default:
       return state;
