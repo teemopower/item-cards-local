@@ -40,7 +40,7 @@ export const itemsReducer = (state = itemsState, action) => {
       })
     case "UPDATE_ITEM":
       return Object.assign({}, state, {
-        items: [...state.items]
+        items: action.payload
       })
     default:
       return state;
