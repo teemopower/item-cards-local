@@ -3,18 +3,17 @@ const cardsState = {
 };
 
 const itemsState = {
-  payload: []
+  items: []
 };
 
 const imagesState = {
   nextImage: 1,
   text: "Person#",
-  name: "Jon Snow",
+  name: "tester",
   url: "https://randomuser.me/api/portraits/men/10.jpg"
 };
 
 export const cardsReducer = (state = cardsState, action) => {
-  console.log(action.payload);
   switch (action.type) {
     case "GET_ALL_FURNITURE":
       return Object.assign({}, state, {
@@ -26,11 +25,15 @@ export const cardsReducer = (state = cardsState, action) => {
 };
 
 export const itemsReducer = (state = itemsState, action) => {
-  console.log(action.payload);
   switch (action.type) {
     case "GET_ALL_ITEMS":
       return Object.assign({}, state, {
-        payload: action.payload
+        items: action.payload
+      });
+    case "ADD_ITEM":
+      console.log('original state', state.items);
+      return Object.assign({}, state, {
+        items: [...state.items, action.payload]
       });
     default:
       return state;

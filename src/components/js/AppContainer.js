@@ -21,7 +21,7 @@ export class AppContainer extends React.Component {
   }
 
   componentDidUpdate() {
-    console.log("payload", this.props.items);
+    console.log("all items", this.props.items);
   }
 
   render() {

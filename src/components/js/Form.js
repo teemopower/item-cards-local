@@ -1,5 +1,11 @@
 import React from 'react';
 
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import { addItem } from "../../store/actions";
+
+import PropTypes from 'prop-types';
+
 export class Form extends React.Component {
     constructor(props){
         super(props);
@@ -32,6 +38,9 @@ export class Form extends React.Component {
 
     handleSubmit = () => {
         console.log('handleSubmit', this.state);
+        console.log('handleSubmit', this.props);
+        const { addItem } = this.props;
+        addItem(this.state)
     }
 
     render() {
@@ -56,9 +65,25 @@ export class Form extends React.Component {
                 />
             </form>
             <button onClick={this.handleSubmit}>Submit</button>
-
         </div>
         )  
     }
 }
 
+
+function mapStateToProps(state) {
+    return state;
+  }
+  
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({
+        addItem
+    },
+        dispatch
+    );
+}
+
+Form = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Form);

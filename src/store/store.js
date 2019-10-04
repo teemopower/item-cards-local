@@ -1,8 +1,12 @@
-import { createStore, applyMiddleware, combineReducers } from "redux";
+import { createStore, applyMiddleware, combineReducers, compose } from "redux";
 import thunk from "redux-thunk";
 
 // reducers
 import { cardsReducer, itemsReducer, imagesReducer } from "./reducer";
+
+const initialState = {};
+const middleWare = [thunk];
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 export const store = createStore(
   combineReducers({
@@ -10,5 +14,6 @@ export const store = createStore(
     items: itemsReducer,
     images: imagesReducer
   }),
-  applyMiddleware(thunk)
+  initialState,
+  composeEnhancers(applyMiddleware(...middleWare))
 );

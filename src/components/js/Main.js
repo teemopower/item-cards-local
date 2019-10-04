@@ -6,7 +6,7 @@ import "../styles/Main.css";
 
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { getNextImage, getImg, getAllFurniture } from "../../store/actions";
+import { getAllFurniture } from "../../store/actions";
 
 export class Main extends React.Component {
   constructor(props) {
