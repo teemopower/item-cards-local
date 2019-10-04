@@ -33,8 +33,8 @@ export function getItems() {
   };
 }
 
-export function addItem (item) {
-  return dispatch=> {
+export function addItem(item) {
+  return dispatch => {
   axios
     .post('http://127.0.0.1:5000/api/items', item)
     .then(res =>
@@ -47,6 +47,22 @@ export function addItem (item) {
       console.log('error',err)
     );
   }
+}
+
+export function deleteItem(id) {
+    return dispatch => {
+      axios
+      .delete(`http://127.0.0.1:5000/api/items/${id}`)
+      .then(res => 
+        dispatch({
+            type: "DELETE_ITEM",
+            payload: res.data
+        })
+        )
+        .catch(err => 
+            console.log('error', err)
+        ) 
+    }
 }
 
 

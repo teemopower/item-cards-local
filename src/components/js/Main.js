@@ -32,8 +32,6 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(
     {
-      // getNextImage,
-      // getImg,
       getAllFurniture
     },
     dispatch

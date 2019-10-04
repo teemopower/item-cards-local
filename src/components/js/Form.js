@@ -1,10 +1,7 @@
 import React from 'react';
-
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { addItem } from "../../actions/actions";
-
-import PropTypes from 'prop-types';
+import { addItem, deleteItem } from "../../actions/actions";
 
 export class Form extends React.Component {
     constructor(props){
@@ -12,12 +9,14 @@ export class Form extends React.Component {
         console.log('forms props',props);
 
         this.state = {
+            id: '',
             name: '',
             description: ''
         };
         
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleDeleteItem = this.handleDeleteItem.bind(this);
     }
 
     handleChange = evt => {
@@ -37,10 +36,16 @@ export class Form extends React.Component {
     };
 
     handleSubmit = () => {
-        console.log('handleSubmit', this.state);
-        console.log('handleSubmit', this.props);
+        // action
         const { addItem } = this.props;
         addItem(this.state)
+    }
+
+    handleDeleteItem = () => {
+        console.log('delete state', this.state.id);
+        // action
+        const { deleteItem } = this.props;
+        deleteItem(this.state.id)
     }
 
     render() {
@@ -65,6 +70,16 @@ export class Form extends React.Component {
                 />
             </form>
             <button onClick={this.handleSubmit}>Submit</button>
+            <br /><br />
+            <form>
+                <label>ID</label>
+                <input type="text" name="id" 
+                    onBlur={this.handleBlur}
+                    onFocus={this.handleFocus}
+                    onChange={this.handleChange}
+                />
+            </form>
+                <button onClick={this.handleDeleteItem}>Submit</button>
         </div>
         )  
     }
@@ -77,7 +92,8 @@ function mapStateToProps(state) {
   
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        addItem
+        addItem,
+        deleteItem
     },
         dispatch
     );
