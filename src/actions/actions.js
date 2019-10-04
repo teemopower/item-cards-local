@@ -65,6 +65,19 @@ export function deleteItem(id) {
     }
 }
 
+export function updateItem(id, data) {
+    return dispatch => {
+        axios
+        .put(`http://127.0.0.1:5000/api/items/${id}`, data)
+        .then(res => 
+            dispatch({
+                type: "UPDATE_ITEM",
+                payload: data
+            })
+        )
+        .catch(err => console.log('error', err))
+    }
+}
 
 export function getImg() {
   return dispatch => {

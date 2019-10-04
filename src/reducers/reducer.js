@@ -38,6 +38,10 @@ export const itemsReducer = (state = itemsState, action) => {
       return Object.assign({}, state, {
         items: state.items.filter(item => item._id !== action.payload)
       })
+    case "UPDATE_ITEM":
+      return Object.assign({}, state, {
+        items: [...state.items]
+      })
     default:
       return state;
   }
