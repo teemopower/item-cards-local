@@ -2,7 +2,7 @@ import React from 'react';
 
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { addItem } from "../../store/actions";
+import { addItem } from "../../actions/actions";
 
 import PropTypes from 'prop-types';
 

@@ -4,14 +4,9 @@ import { Header } from "./Header";
 
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { getAllFurniture, getItems } from "../../store/actions";
+import { getAllFurniture, getItems } from "../../actions/actions";
 
 export class AppContainer extends React.Component {
-  constructor(props) {
-    super(props);
-
-    console.log("AppContainer props", props);
-  }
 
   componentDidMount() {
     const { getAllFurniture, getItems } = this.props;
@@ -44,8 +39,6 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(
     {
-      // getNextImage,
-      // getImg,
       getAllFurniture,
       getItems
     },

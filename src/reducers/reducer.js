@@ -31,10 +31,13 @@ export const itemsReducer = (state = itemsState, action) => {
         items: action.payload
       });
     case "ADD_ITEM":
-      console.log('original state', state.items);
       return Object.assign({}, state, {
         items: [...state.items, action.payload]
       });
+    case "DELETE_ITEM":
+      return Object.assign({}, state, {
+        items: [...state.items]
+      })
     default:
       return state;
   }
