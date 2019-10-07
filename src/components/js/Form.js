@@ -1,7 +1,7 @@
 import React from 'react';
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { addItem, deleteItem, updateItem } from "../../actions/actions";
+import { addItem, deleteItem, updateItem, getAllFurniture } from "../../actions/actions";
 
 export class Form extends React.Component {
     constructor(props){
@@ -18,6 +18,15 @@ export class Form extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleDeleteItem = this.handleDeleteItem.bind(this);
         this.handleUpdateItem = this.handleUpdateItem.bind(this);
+    }
+
+    componentDidMount(){
+        getAllFurniture()   
+    }
+
+    componentDidUpdate(){
+        const { items } = this.props;
+        console.log('items', items);
     }
 
     handleChange = evt => {
@@ -42,11 +51,10 @@ export class Form extends React.Component {
         addItem(this.state)
     }
 
-    handleDeleteItem = () => {
-        console.log('delete state', this.state.id);
+    handleDeleteItem = (id) => {
         // action
         const { deleteItem } = this.props;
-        deleteItem(this.state.id)
+        deleteItem(id)
     }
 
     handleUpdateItem = () => {
@@ -55,7 +63,9 @@ export class Form extends React.Component {
     }
 
     render() {
-      return (
+        const { items } = this.props;
+    
+    return (
         <div>
             <form>
                 <label>Name</label>
@@ -87,7 +97,6 @@ export class Form extends React.Component {
             </form>
                 <button onClick={this.handleDeleteItem}>Submit</button>
 
-
             <form>
                 <label>Name</label>
                 <input type="text"
@@ -107,6 +116,24 @@ export class Form extends React.Component {
                 />
             </form>
                 <button onClick={this.handleUpdateItem}>Edit</button>
+
+            <div>
+                { items.items.map((val) => (
+                    <div key={val._id}>
+                        <br />
+                        <div>Name</div>
+                        <div>
+                            {val.name}
+                        </div>
+                        <div>ID</div>
+                        <div>
+                            {val._id}
+                        </div>
+                        <button onClick={e => this.handleDeleteItem(val._id)}>Delete</button>
+                    </div>
+                ))}
+            </div>
+
         </div>
         )  
     }
@@ -121,7 +148,8 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators({
         addItem,
         deleteItem,
-        updateItem
+        updateItem,
+        getAllFurniture
     },
         dispatch
     );
