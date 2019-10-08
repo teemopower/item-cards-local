@@ -10,6 +10,7 @@ export class Form extends React.Component {
 
         this.state = {
             id: '',
+            editId: '',
             name: '',
             description: ''
         };
@@ -18,15 +19,11 @@ export class Form extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleDeleteItem = this.handleDeleteItem.bind(this);
         this.handleUpdateItem = this.handleUpdateItem.bind(this);
+        this.setUpdateItemId = this.setUpdateItemId.bind(this);
     }
 
     componentDidMount(){
         getAllFurniture()   
-    }
-
-    componentDidUpdate(){
-        const { items } = this.props;
-        console.log('items', items);
     }
 
     handleChange = evt => {
@@ -58,8 +55,17 @@ export class Form extends React.Component {
     }
 
     handleUpdateItem = () => {
+        const { editId } = this.state;
+        const editedItem = {
+            name: this.state.name,
+            description: this.state.description
+        }
         const { updateItem } = this.props;
-        updateItem("5d97b2a8868deb43a4241195", this.state)
+        updateItem(editId, editedItem)
+    }
+
+    setUpdateItemId = id => {
+       this.setState({ editId: id}); 
     }
 
     render() {
@@ -67,6 +73,7 @@ export class Form extends React.Component {
     
     return (
         <div>
+            <h4>Add Item</h4>
             <form>
                 <label>Name</label>
                 <input type="text"
@@ -87,6 +94,7 @@ export class Form extends React.Component {
             </form>
             <button onClick={this.handleSubmit}>Submit</button>
             <br /><br />
+            <h4>Delete Item</h4>
             <form>
                 <label>ID</label>
                 <input type="text" name="id" 
@@ -94,44 +102,51 @@ export class Form extends React.Component {
                     onFocus={this.handleFocus}
                     onChange={this.handleChange}
                 />
+                <button onClick={this.handleDeleteItem}>Delete</button>
             </form>
-                <button onClick={this.handleDeleteItem}>Submit</button>
-
-            <form>
-                <label>Name</label>
-                <input type="text"
-                    name="name" 
-                    className="fieldInput"
-                    onBlur={this.handleBlur}
-                    onFocus={this.handleFocus}
-                    onChange={this.handleChange}
-                />
-                <label>Description</label>
-                <input type="text" 
-                    name="description"
-                    className="fieldInput"
-                    onBlur={this.handleBlur}
-                    onFocus={this.handleFocus}
-                    onChange={this.handleChange}
-                />
-            </form>
-                <button onClick={this.handleUpdateItem}>Edit</button>
+            
+            <br /><br />
+            <div>
+                <h4>Edit Item</h4>
+                <form>
+                    <label>Name</label>
+                    <input type="text"
+                        name="name" 
+                        className="fieldInput"
+                        onBlur={this.handleBlur}
+                        onFocus={this.handleFocus}
+                        onChange={this.handleChange}
+                    />
+                    <label>Description</label>
+                    <input type="text" 
+                        name="description"
+                        className="fieldInput"
+                        onBlur={this.handleBlur}
+                        onFocus={this.handleFocus}
+                        onChange={this.handleChange}
+                    />
+                    <button onClick={this.handleUpdateItem}>Edit</button>
+                </form>
+            </div>    
 
             <div>
-                { items.items.map((val) => (
+                { items && items.items && items.items.length > 0 ? items.items.map((val) => (
                     <div key={val._id}>
                         <br />
                         <div>Name</div>
                         <div>
                             {val.name}
                         </div>
+                        <br />
                         <div>ID</div>
                         <div>
                             {val._id}
                         </div>
+                        <button onClick={e => this.setUpdateItemId(val._id)}>Edit</button>
                         <button onClick={e => this.handleDeleteItem(val._id)}>Delete</button>
                     </div>
-                ))}
+                ))
+                : null }
             </div>
 
         </div>
