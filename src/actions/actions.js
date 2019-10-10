@@ -19,7 +19,7 @@ export function getAllFurniture() {
 
 export function getItems() {
   return dispatch => {
-    return fetch("http://127.0.0.1:5000/api/items")
+    return fetch("https://testsb123.azurewebsites.net/api/items")
       .then(res => res.json())
       .then(function(data) {
         dispatch({
@@ -36,7 +36,7 @@ export function getItems() {
 export function addItem(item) {
   return dispatch => {
   axios
-    .post('http://127.0.0.1:5000/api/items', item)
+    .post('https://testsb123.azurewebsites.net/api/items', item)
     .then(res =>
       dispatch({
         type: "ADD_ITEM",
@@ -52,7 +52,7 @@ export function addItem(item) {
 export function deleteItem(id) {
     return dispatch => {
       axios
-      .delete(`http://127.0.0.1:5000/api/items/${id}`)
+      .delete(`https://testsb123.azurewebsites.net/api/items/${id}`)
       .then(res => 
         dispatch({
             type: "DELETE_ITEM",
@@ -68,7 +68,7 @@ export function deleteItem(id) {
 export function updateItem(id, data) {
     return dispatch => {
         axios
-        .put(`http://127.0.0.1:5000/api/items/${id}`, data)
+        .put(`https://testsb123.azurewebsites.net/api/items/${id}`, data)
         .then(res => 
             dispatch({
                 type: "UPDATE_ITEM",
