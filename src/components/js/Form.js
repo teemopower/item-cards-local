@@ -3,6 +3,12 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { addItem, deleteItem, updateItem, getAllFurniture } from "../../actions/actions";
 
+import styled, { keyframes } from 'styled-components';
+import { bounce, fadeIn } from 'react-animations';
+
+const Bounce = styled.div`animation: 2s ${keyframes`${bounce}`}`;
+const FadeIn = styled.div`animation: 2s ${keyframes`${fadeIn}`}`;
+
 export class Form extends React.Component {
     constructor(props){
         super(props);
@@ -73,7 +79,9 @@ export class Form extends React.Component {
     
     return (
         <div>
-            <h4>Add Item</h4>
+            <Bounce>
+                <h4>Add Item</h4>
+            </Bounce>
             <form>
                 <label>Name</label>
                 <input type="text"
@@ -94,7 +102,11 @@ export class Form extends React.Component {
             </form>
             <button onClick={this.handleSubmit}>Submit</button>
             <br /><br />
-            <h4>Delete Item</h4>
+
+            <FadeIn>
+                <h4>Delete Item</h4>
+            </FadeIn>
+            
             <form>
                 <label>ID</label>
                 <input type="text" name="id" 
