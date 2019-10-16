@@ -4,6 +4,7 @@ import "../styles/Header.css";
 import { Main } from "./Main";
 import { Chair } from "./Chair";
 import { Form } from "./Form";
+import { Login } from "./Login";
 
 export class Header extends React.Component {
   render() {
@@ -11,12 +12,13 @@ export class Header extends React.Component {
       <Router>
         <div className="header-container">
           <nav>
-            <Link to="/">Home</Link> | <Link to="/chair">Chairs</Link> | <Link to="/form">Item</Link>
+            <Link to="/">Home</Link> | <Link to="/furniture">Furniture</Link> | <Link to="/form">Item</Link> | <Link to="/login">Login</Link>
           </nav>
 
           <Route exact path="/" component={Main} />
-          <Route path="/chair" component={Chair} />
+          <Route path="/furniture" component={Chair} />
           <Route path="/form" component={Form} />
+          <Route path="/login" component={Login} />
         </div>
       </Router>
     );
